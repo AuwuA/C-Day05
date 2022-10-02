@@ -1,7 +1,7 @@
 #include "bubblesort.h"
 #include <stdlib.h>
 #include <string.h>
-
+// int数组的类型为 int [] 而不是int
 void bubbleSort(void *arr, unsigned long long size, unsigned long long eleLen, int (*compare)(void *data1, void *data2))
 {
     for (unsigned long long i = 0; i < size - 1; i++) {
