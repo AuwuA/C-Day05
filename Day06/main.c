@@ -205,6 +205,108 @@ void test14()
 
 }
 
+void test15()
+{
+    int a = 10;
+    int b = 20;
+    int *p = &a;
+    int *q = &b;
+    //p + q;// 指针加指针err
+    printf("p = %p\n", p);
+    printf("q = %p\n", q);
+    printf("%p\n", p - q);// ok
+
+}
+
+void test16()
+{
+    int a[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+    int *p = &a[3];
+    int *q = &a[5];
+    // 偏移过的元素个数
+    printf("p - a = %d\n", p - a);
+    printf("p - q = %d\n", q - p);
+    p = &a[9] + 1;
+    printf("p - a = %d\n", p - a);
+}
+
+// strlen封装
+int mystrlen(const char *str)
+{
+    int len = 0;
+    while(*str++) {
+        len++;
+    }
+    return len;
+}
+void test17()
+{
+    char str[] = "hello";
+    int len = mystrlen(str);
+    printf("str's len = %d\n", len);
+}
+
+// 地址之间可以进行大小比较
+void test18()
+{
+    int a[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+    int *p = &a[3];
+    if (p > a) {
+        printf("OK\n");
+    } else if (p < a) {
+        printf("NO\n");
+    } else {
+        printf("==\n");
+    }
+}
+
+void test19()
+{
+    int a = 10;
+    int b = 20;
+    int *p1 = & a;
+    int *p2 = &b;
+    if (p1 > p2) {
+
+    }
+}
+
+// 指针数组
+void test20()
+{
+    int a = 10;
+    int b = 20;
+    int c = 30;
+    int *pArr[3] = {&a, &b, &c};
+    for (unsigned long long i = 0; i < sizeof(pArr) / sizeof(pArr[0]); i++)
+    {
+        //printf("%d\n", *pArr[i]);
+        printf("%d\n", **(pArr + i));// --->二维数组
+    }
+}
+
+// 多级指针
+void test21()
+{
+    int a = 0;
+    int *p = &a;
+    int **pp = &p;
+    **pp = 99;
+    printf("a = %d\n", a);
+    int ***ppp = &pp;
+    ***ppp = 1000;
+    printf("a = %d\n", a);
+}
+
+void test22()
+{
+    int a = 10;
+    int *p = &a;
+    int **pp = &p;
+    int ***ppp = & pp;
+    printf("***ppp = %d\n", ***ppp);
+}
+
 int main(int argc, char *argv[])
 {
     for (int i = 0; i < argc; i++) {
@@ -222,6 +324,14 @@ int main(int argc, char *argv[])
     //    test11();
     //    test12();
     //    test13();
-    test14();
+    //    test14();
+    //    test15();
+    //    test16();
+    //    test17();
+    //    test18();
+    //    test20();
+    //    test21();
+    test22();
+
     return 0;
 }
